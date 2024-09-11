@@ -9,9 +9,9 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface BKRegistrationMapper {
 
-    @Mapping(target = "customer", source = "customer")
-    @Mapping(source = "registrationDTO.creationDate", target = "creationDate")
-    @Mapping(source = "registrationDTO.lastModificationDate", target = "lastModificationDate")
-    @Mapping(target = "id", ignore = true)
-    BKRegistration toEntity(BKRegistrationDTO registrationDTO, Customer customer);
+  @Mapping(target = "customer", source = "customer")
+  @Mapping(source = "registrationDTO.creationDate", target = "creationDate")
+  @Mapping(source = "registrationDTO.lastModificationDate", target = "lastModificationDate")
+  @Mapping(target = "id", ignore = true)
+  BKRegistration toEntity(BKRegistrationDTO registrationDTO, Customer customer);
 }

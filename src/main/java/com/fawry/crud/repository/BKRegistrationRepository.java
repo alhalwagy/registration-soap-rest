@@ -12,19 +12,22 @@ import java.util.Optional;
 @Repository
 public interface BKRegistrationRepository extends PagingAndSortingRepository<BKRegistration, Long> {
 
-    @Query(value = "SELECT * FROM ( " +
-            "  SELECT a.*, ROWNUM rnum FROM ( " +
-            "    SELECT * FROM bk_registration " +
-            "    ORDER BY id " +
-            "  ) a " +
-            "  WHERE ROWNUM <= :endRow " +
-            ") " +
-            "WHERE rnum > :startRow", nativeQuery = true)
-    List<BKRegistration> findAll(@Param("startRow") int startRow, @Param("endRow") int endRow);
+  @Query(
+      value =
+          "SELECT * FROM ( "
+              + "  SELECT a.*, ROWNUM rnum FROM ( "
+              + "    SELECT * FROM bk_registration "
+              + "    ORDER BY id "
+              + "  ) a "
+              + "  WHERE ROWNUM <= :endRow "
+              + ") "
+              + "WHERE rnum > :startRow",
+      nativeQuery = true)
+  List<BKRegistration> findAll(@Param("startRow") int startRow, @Param("endRow") int endRow);
 
-    Optional<BKRegistration> findById(Long id);
+  Optional<BKRegistration> findById(Long id);
 
-    BKRegistration save(BKRegistration bkRegistration);
+  BKRegistration save(BKRegistration bkRegistration);
 
-    void deleteById(Long id);
+  void deleteById(Long id);
 }
