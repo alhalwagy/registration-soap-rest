@@ -1,9 +1,8 @@
-package com.fawry.crud.entity;
+package com.fawry.crud.entity.EBPPCORE;
 
 import jakarta.persistence.*;
-import lombok.Data;
-
 import java.time.LocalDateTime;
+import lombok.Data;
 
 @Entity(name = "CUSTOMERS")
 @Data

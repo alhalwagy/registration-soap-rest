@@ -1,55 +1,46 @@
-package com.fawry.crud.entity;
+package com.fawry.crud.entity.EBPPCORE;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
-@Entity(name = "BK_REGISTRATION")
+@Entity
+@Table(name = "BK_REGISTRATION")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BKRegistration {
-
+public class BKRegistration implements Serializable {
 
     @Id
-    @Column(
-            name = "ID",
-            unique = true,
-            nullable = false,
-            scale = 0
-    )
-    @GeneratedValue(
-            generator = "BK_REGISTRATION_SEQ",
-            strategy = GenerationType.SEQUENCE
-    )
+    @Column(name = "ID", unique = true, nullable = false, scale = 0)
+    @GeneratedValue(generator = "BK_REGISTRATION_SEQ", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(
             name = "BK_REGISTRATION_SEQ",
-            sequenceName = "EBPP_CORE.BK_RG_ENTITLS_SEQ",  // Use the exact sequence name from your database
-            allocationSize = 1  // Ensure the allocation size matches the sequence increment
+            sequenceName =
+                    "EBPP_CORE.BK_RG_ENTITLS_SEQ", // Use the exact sequence name from your database
+            allocationSize = 1 // Ensure the allocation size matches the sequence increment
     )
     Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "CUSTOMER_ID")
-   Customer customer;
+    @Column(name = "CUSTOMER_ID")
+    Long customerId;
 
     @Column(name = "STATUS_ID")
     Long statusId;
 
     @Column(name = "SENDER_ID")
-    Long sender_id ;
+    Long sender_id;
 
     @Column(name = "BANK_BRANCH_ID")
     Long bankBranchId;
 
     @Column(name = "PREFERRED_APP_LANG_ID")
     Long preferredAppLangId;
-
 
     @Column(name = "PREFERRED_NOTIFICATION_LANG_ID")
     Long preferredNotificationLangId;
@@ -69,7 +60,6 @@ public class BKRegistration {
     @Column(name = "CREATION_DATE")
     private LocalDateTime creationDate;
 
-
     @Column(name = "LAST_MODIFICATION_DATE")
     private LocalDateTime lastModificationDate;
 
@@ -84,7 +74,6 @@ public class BKRegistration {
 
     @Column(name = "IS_LOGEDON")
     private Character isLogedOn;
-
 
     @Column(name = "IS_AUTO_ARCHIVE_ENABLE")
     private Character isAutoArchiveEnable;
@@ -115,7 +104,6 @@ public class BKRegistration {
 
     @Column(name = "REGISTRATION_MOBILE")
     private String registrationMobile;
-
 
     @Column(name = "DASHBOARD_VIEWING_TYPE_ID")
     private Long dashboardViewingTypeId;
@@ -155,5 +143,4 @@ public class BKRegistration {
 
     @Column(name = "EXT_TRANSFER_ENABLED")
     private Boolean extTransferEnabled;
-
 }

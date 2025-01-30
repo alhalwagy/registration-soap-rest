@@ -1,5 +1,7 @@
 package com.fawry.crud.exception;
 
+
+import com.fawry.crud.exception.customExceptions.ConnectionNotFoundException;
 import com.fawry.crud.exception.customExceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,5 +20,15 @@ public class GlobalHandlerException {
             .build();
 
     return new ResponseEntity<>(errorModel, HttpStatus.NOT_FOUND);
+  }
+
+  @ExceptionHandler(ConnectionNotFoundException.class)
+  public ResponseEntity<ErrorModel> connectionNotFound(ConnectionNotFoundException e) {
+    ErrorModel errorModel =
+        ErrorModel.builder()
+            .message(e.getMessage())
+            .code(String.valueOf(HttpStatus.UNAUTHORIZED))
+            .build();
+    return new ResponseEntity<>(errorModel, HttpStatus.UNAUTHORIZED);
   }
 }

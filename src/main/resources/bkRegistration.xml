@@ -1,0 +1,131 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://fawry.com/crud/bkregistration"
+           targetNamespace="http://fawry.com/crud/bkregistration"
+           elementFormDefault="qualified">
+
+    <!--    &lt;!&ndash; Request Element &ndash;&gt;-->
+    <xs:element name="GetRegistrationByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Response Elements -->
+    <xs:complexType name="CustomerResRead">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="customerType" type="xs:string"/>
+            <xs:element name="nationality" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BKRegistrationResRead">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="statusId" type="xs:long"/>
+            <xs:element name="customer" type="tns:CustomerResRead"/>
+            <xs:element name="senderId" type="xs:long"/>
+            <xs:element name="registrationEmail" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="GetRegistrationByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="BKRegistrationResRead" type="tns:BKRegistrationResRead"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetRegistrationsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="BKRegistrationResRead" type="tns:BKRegistrationResRead" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetRegistrationsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="page" type="xs:int"/>
+                <xs:element name="size" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DeleteByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DeleteByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <!-- Create Request for BKRegistrationDTO -->
+    <xs:element name="CreateBKRegistrationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="customerId" type="xs:long" minOccurs="0"/>
+                <xs:element name="statusId" type="xs:long" minOccurs="0"/>
+                <xs:element name="sender_id" type="xs:long" minOccurs="0"/>
+                <xs:element name="bankBranchId" type="xs:long" minOccurs="0"/>
+                <xs:element name="preferredAppLangId" type="xs:long" minOccurs="0"/>
+                <xs:element name="preferredNotificationLangId" type="xs:long" minOccurs="0"/>
+                <xs:element name="defaultSof" type="xs:string" minOccurs="0"/>
+                <xs:element name="deactivationDate" type="xs:dateTime" minOccurs="0"/>
+                <xs:element name="deactivationReason" type="xs:string" minOccurs="0"/>
+                <xs:element name="registrationDate" type="xs:dateTime" minOccurs="0"/>
+                <xs:element name="creationDate" type="xs:dateTime" minOccurs="0"/>
+                <xs:element name="lastModificationDate" type="xs:dateTime" minOccurs="0"/>
+                <xs:element name="cif" type="xs:string" minOccurs="0"/>
+                <xs:element name="trxMaxAmount" type="xs:double" minOccurs="0"/>
+                <xs:element name="lastLoginDate" type="xs:dateTime" minOccurs="0"/>
+                <xs:element name="isLogedOn" type="xs:string" minOccurs="0"/>
+                <xs:element name="isAutoArchiveEnable" type="xs:string" minOccurs="0"/>
+                <xs:element name="autoArchivePeriod" type="xs:string" minOccurs="0"/>
+                <xs:element name="userCategoryId" type="xs:long" minOccurs="0"/>
+                <xs:element name="creditCardEnabled" type="xs:string" minOccurs="0"/>
+                <xs:element name="loginUsername" type="xs:string" minOccurs="0"/>
+                <xs:element name="activationCode" type="xs:string" minOccurs="0"/>
+                <xs:element name="pmtAttemptFlag" type="xs:string" minOccurs="0"/>
+                <xs:element name="activationDate" type="xs:dateTime" minOccurs="0"/>
+                <xs:element name="registrationEmail" type="xs:string" minOccurs="0"/>
+                <xs:element name="registrationMobile" type="xs:string" minOccurs="0"/>
+                <xs:element name="dashboardViewingTypeId" type="xs:long" minOccurs="0"/>
+                <xs:element name="customerIp" type="xs:string" minOccurs="0"/>
+                <xs:element name="cspChannelId" type="xs:string" minOccurs="0"/>
+                <xs:element name="kycLevelId" type="xs:long" minOccurs="0"/>
+                <xs:element name="jobTitle" type="xs:string" minOccurs="0"/>
+                <xs:element name="monthlySalary" type="xs:double" minOccurs="0"/>
+                <xs:element name="memo" type="xs:string" minOccurs="0"/>
+                <xs:element name="hasBankAccount" type="xs:string" minOccurs="0"/>
+                <xs:element name="companyName" type="xs:string" minOccurs="0"/>
+                <xs:element name="isSelfReg" type="xs:string" minOccurs="0"/>
+                <xs:element name="regVerMethod" type="xs:string" minOccurs="0"/>
+                <xs:element name="customerValidationStatus" type="xs:long" minOccurs="0"/>
+                <xs:element name="extTransferEnabled" type="xs:boolean" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreateRegistrationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="BKRegistrationResRead" type="tns:BKRegistrationResRead"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
